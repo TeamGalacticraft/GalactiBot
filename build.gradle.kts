@@ -31,6 +31,7 @@ plugins {
 
 val quarkusVersion = project.property("quarkus.version").toString()
 val quarkusGithubVersion = project.property("quarkus_github.version").toString()
+val brigadierVersion = project.property("brigadier.version").toString()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -44,12 +45,14 @@ group = project.property("group").toString()
 repositories {
     mavenLocal()
     mavenCentral()
+    maven("https://libraries.minecraft.net/")
 }
 
 dependencies {
     implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:${quarkusVersion}"))
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkiverse.githubapp:quarkus-github-app:${quarkusGithubVersion}")
+    implementation("com.mojang:brigadier:${brigadierVersion}");
 
     testImplementation("io.quarkus:quarkus-junit5")
 }
